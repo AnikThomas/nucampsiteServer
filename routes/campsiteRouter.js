@@ -26,11 +26,11 @@ campsiteRouter.route('/')
     })
     .catch(err => next(err));
 })
-.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res) => {
+.put(authenticate.verifyUser, (req, res) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /campsites');
 })
-.delete(authenticate.verifyUser, authenticate.verifyAdmin, authenticate.verifyAdmin, (req, res, next) => {
+.delete(authenticate.verifyUser,authenticate.verifyAdmin, (req, res, next) => {
     Campsite.deleteMany()
     .then(response => {
         res.statusCode = 200;
